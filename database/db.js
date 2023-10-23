@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const Connection = async (DBURL) => {
   const URL = DBURL;
@@ -9,4 +9,4 @@ const Connection = async (DBURL) => {
     console.log("Database error", error);
   }
 };
-export default Connection;
+module.exports = Connection;

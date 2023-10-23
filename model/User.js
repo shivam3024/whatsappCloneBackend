@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const userSchema = mongoose.Schema({
   iss: {
@@ -49,4 +49,4 @@ const userSchema = mongoose.Schema({
 });
 const User = mongoose.model("whatsApp", userSchema);
 
-export default User;
+module.exports = User;

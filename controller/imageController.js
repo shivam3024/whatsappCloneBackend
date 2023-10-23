@@ -1,6 +1,6 @@
-import grid from "gridfs-stream";
-import mongoose from "mongoose";
-import dotenv from "dotenv";
+const grid = require("gridfs-stream");
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
 dotenv.config();
 const url = process.env.BASE_URL;
 let gfs, gridFSBucket;
@@ -13,7 +13,7 @@ conn.once("open", () => {
   gfs = grid(conn.db, mongoose.mongo);
   gfs.collection("fs");
 });
-export const uploadFile = async (req, res) => {
+const uploadFile = async (req, res) => {
   if (!req.file) {
     return res.status(404).json("file not found");
   }
@@ -21,7 +21,7 @@ export const uploadFile = async (req, res) => {
   const imageUrl = `${url}/file/${req.file.filename}`;
   return res.status(200).json(imageUrl);
 };
-export const getImage = async (req, res) => {
+const getImage = async (req, res) => {
   try {
     const file = await gfs.files.findOne({ filename: req.params.filename });
     const readStream = gridFSBucket.openDownloadStream(file._id);
@@ -30,3 +30,4 @@ export const getImage = async (req, res) => {
     return res.status(500).json(error.message);
   }
 };
+module.exports = { uploadFile, getImage };

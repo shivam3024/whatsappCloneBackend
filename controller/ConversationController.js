@@ -1,6 +1,6 @@
-import conversation from "../model/Conversation.js";
+const conversation = require("../model/Conversation.js");
 
-export const newConversation = async (req, res) => {
+const newConversation = async (req, res) => {
   try {
     const senderId = req.body.senderId;
     const receiverId = req.body.receiverId;
@@ -20,7 +20,7 @@ export const newConversation = async (req, res) => {
   }
 };
 
-export const getConversation = async (req, res) => {
+const getConversation = async (req, res) => {
   try {
     const senderId = req.body.senderId;
     const receiverId = req.body.receiverId;
@@ -33,3 +33,4 @@ export const getConversation = async (req, res) => {
     return res.status(500).json(error.message);
   }
 };
+module.exports = { newConversation, getConversation };

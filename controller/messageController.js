@@ -1,6 +1,6 @@
-import message from "../model/Message.js";
-import conversation from "../model/Conversation.js";
-export const newMessage = async (req, res) => {
+const message = require("../model/Message.js");
+const conversation = require("../model/Conversation.js");
+const newMessage = async (req, res) => {
   try {
     const newMessage = new message(req.body);
     await newMessage.save();
@@ -13,7 +13,7 @@ export const newMessage = async (req, res) => {
   }
 };
 
-export const getMessages = async (req, res) => {
+const getMessages = async (req, res) => {
   try {
     const msg = await message.find({ conversationId: req.params.id });
 
@@ -22,3 +22,4 @@ export const getMessages = async (req, res) => {
     res.status(500).json(error.message);
   }
 };
+module.exports = { newMessage, getMessages };
