@@ -1,8 +1,9 @@
 import multer from "multer";
+import dotenv from "dotenv";
+dotenv.config();
 import { GridFsStorage } from "multer-gridfs-storage";
-
 const storage = new GridFsStorage({
-  url: "mongodb://localhost:27017/WhatsApp_clone",
+  url: process.env.DB_URL,
   options: { useUnifiedTopology: true, useNewUrlParser: true },
   file: (req, file) => {
     const match = ["image/png", "image/jpg"];

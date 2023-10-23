@@ -12,7 +12,7 @@ app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/", Route);
-const PORT = process.env.PORT_SERVER;
+const PORT = process.env.PORT_SERVER || 8090;
 const DBURL = process.env.DB_URL;
 
 Connection(DBURL);

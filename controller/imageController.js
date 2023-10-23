@@ -1,9 +1,10 @@
 import grid from "gridfs-stream";
 import mongoose from "mongoose";
-
-const url = "http://localhost:8000";
-
+import dotenv from "dotenv";
+dotenv.config();
+const url = process.env.BASE_URL;
 let gfs, gridFSBucket;
+
 const conn = mongoose.connection;
 conn.once("open", () => {
   gridFSBucket = new mongoose.mongo.GridFSBucket(conn.db, {
@@ -12,7 +13,6 @@ conn.once("open", () => {
   gfs = grid(conn.db, mongoose.mongo);
   gfs.collection("fs");
 });
-
 export const uploadFile = async (req, res) => {
   if (!req.file) {
     return res.status(404).json("file not found");
