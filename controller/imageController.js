@@ -14,7 +14,6 @@ conn.once("open", () => {
   gfs.collection("fs");
 });
 const uploadFile = async (req, res) => {
-  console.log("req.file -------------->", req.file);
   if (!req.file) {
     return res.status(404).json("file not found");
   }
