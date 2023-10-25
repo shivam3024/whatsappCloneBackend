@@ -7,7 +7,14 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 const app = express();
-app.use(cors());
+
+const corsOrigin = {
+  origin: "http://localhost:3000", //or whatever port your frontend is using
+  credentials: true,
+  optionSuccessStatus: 200,
+};
+app.use(cors(corsOrigin));
+
 app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
