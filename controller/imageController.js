@@ -6,11 +6,11 @@ const url = process.env.BASE_URL;
 let gfs, gridFSBucket;
 
 const conn = mongoose.connection;
-conn.once("open", () => {
-  gridFSBucket = new mongoose.mongo.GridFSBucket(conn.db, {
+conn.once("open", async () => {
+  gridFSBucket = await new mongoose.mongo.GridFSBucket(conn.db, {
     bucketName: "fs",
   });
-  gfs = grid(conn.db, mongoose.mongo);
+  gfs = await grid(conn.db, mongoose.mongo);
   gfs.collection("fs");
 });
 const uploadFile = async (req, res) => {
