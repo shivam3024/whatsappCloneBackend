@@ -9,7 +9,7 @@ dotenv.config();
 const app = express();
 
 const corsOrigin = {
-  origin: "http://localhost:3000",
+  origin: process.env.FRONTEND_URL,
   credentials: true,
   optionSuccessStatus: 200,
 };
